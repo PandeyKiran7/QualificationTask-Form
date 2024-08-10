@@ -198,3 +198,25 @@ h1 {
 h2{
   text-align: center;
 }
+
+/* ================== Mobile Responsive Styling ================== */
+@media (max-width: 600px) {
+  .table-container {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .data-table th, .data-table td {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .data-table button {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+}
