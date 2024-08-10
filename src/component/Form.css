@@ -67,7 +67,7 @@ select:focus {
 
 input[type="file"] {
   padding: 8px 0;
-  width: 100px;
+  /* width: 100px; */
 color: #000;
   border: none;
   border-radius: 10px;

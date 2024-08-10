@@ -1,53 +1,40 @@
-// src/component/Table.js
+import React, { useState } from 'react';
+import Table from './Table';
 
-import React from 'react';
+const ParentComponent = () => {
+  const [data, setData] = useState([
+    {
+      name: "John Doe",
+      email: "john@example.com",
+      phone: "123456789",
+      dob: "1990-01-01",
+      address: {
+        city: "Kathmandu",
+        district: "Kathmandu",
+        province: "Bagmati",
+        country: "Nepal",
+      },
+    },
+    // Add more test data if needed
+  ]);
 
-const Table = ({ data, onEdit, onDelete }) => {
+  const handleEdit = (index) => {
+    console.log('Edit clicked for index:', index);
+    // Add your edit logic here
+  };
+
+  const handleDelete = (index) => {
+    console.log('Delete clicked for index:', index);
+    // Add your delete logic here
+    const newData = data.filter((_, i) => i !== index);
+    setData(newData);
+  };
+
   return (
-    <div className="table-container">
-      <h2>User Data</h2>
-      <table className="data-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Date of Birth</th>
-            <th>City</th>
-            <th>District</th>
-            <th>Province</th>
-            <th>Country</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.length === 0 ? (
-            <tr>
-              <td colSpan="9">No data available</td>
-            </tr>
-          ) : (
-            data.map((item, index) => (
-              <tr key={index}>
-                {/* <td>{item.SN}</td> */}
-                <td>{item.name}</td>
-                <td>{item.email}</td>
-                <td>{item.phone}</td>
-                <td>{item.dob}</td>
-                <td>{item.address.city}</td>
-                <td>{item.address.district}</td>
-                <td>{item.address.province}</td>
-                <td>{item.address.country}</td>
-                <td>
-                  <button onClick={() => onEdit(index)}>Edit</button>
-                  <button onClick={() => onDelete(index)}>Delete</button>
-                </td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+    <div>
+      <Table data={data} onEdit={handleEdit} onDelete={handleDelete} />
     </div>
   );
 };
 
-export default Table;
+export default ParentComponent;
