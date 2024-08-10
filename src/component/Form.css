@@ -1,0 +1,200 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: hwb(0 78% 20%);
+  color:#000;
+}
+
+/* Main Container */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px grey;
+  max-width: 700px;
+  margin: 30px auto;
+}
+
+/* Form Styles */
+.form {
+  font-size: 20px;
+  width: 100%;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.form div {
+  margin-bottom: 15px;
+  padding: 5px 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #444;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="file"],
+select {
+  height: 40px;
+  font-size: 16px;
+  width: 100%;
+  padding: 10px 10px;
+  border: 1px solid #726c6c;
+  border-radius: 5px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+input[type="file"]:focus,
+select:focus {
+  border: 1px solid forestgreen;
+}
+
+input[type="file"] {
+  padding: 8px 0;
+  width: 100px;
+color: #000;
+  border: none;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+input[type="file"]:focus {
+  outline: none;
+}
+
+/* Button Styles */
+.submit-btn{
+background-color: transparent;
+  color: #000;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.submit-btn:hover {
+  background-color:forestgreen;
+  color: #fff;
+}
+
+/* Error Messages */
+p {
+  color: red;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 0;
+
+}
+
+/* Heading Styles */
+h1 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 28px;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+ color: #000;
+}
+
+/* Custom Styles for Specific Sections */
+.name, .email, .contact, .date, .address, .img {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/*================== styling for Mobile responsive ================== */
+@media (max-width: 600px) {
+  .main {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+  }
+
+  .form {
+    /* margin: 10px 20px; */
+    padding: 30px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+  }
+}
+
+
+/* ========== ++++++++ Styling For Applicant Table ++++++  ============= */
+
+.table-container {
+  border: 1px solid grey;
+  width: 70%;
+  margin: 20px auto;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 1px grey;
+}
+
+.data-table {
+  /* margin: 20px 10px; */
+  padding: 10px 10px;
+  width: 100%;
+  border-collapse: collapse;
+  /* line-height: 3px; */
+  letter-spacing: 1.5px;
+}
+
+.data-table th, .data-table td {
+  border: 1px solid rgb(217, 229, 217);
+  padding: 8px;
+  text-align: left;
+
+}
+
+.data-table th {
+  background-color: forestgreen;
+  color: white;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.data-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.data-table button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border-bottom: 1px solid grey;
+  background-color: transparent;
+  color:#000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.data-table button:hover {
+  background-color: forestgreen;
+}
+
+h2{
+  text-align: center;
+}
