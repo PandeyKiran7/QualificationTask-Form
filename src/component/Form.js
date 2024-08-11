@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Form = ({onSubmit}) => {
+const Form = ({handleSubmitForm,data,countries}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,23 +17,16 @@ const Form = ({onSubmit}) => {
   });
 
   const [errors, setErrors] = useState({});
-  const [countries, setCountries] = useState([]);
+  // const [countries, setCountries] = useState([]);
 
 
   // For Country Fetch()
   useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await axios.get('https://restcountries.com/v3.1/all');
-        const countryList = response.data.map(country => country.name.common);
-        setCountries(countryList);
-      } catch (error) {
-        console.error('Error fetching countries:', error);
-      }
-    };
-
-    fetchCountries();
-  }, []);
+    
+    if(data){
+      setFormData(data)
+    }
+  }, [data]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,13 +73,22 @@ const Form = ({onSubmit}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (data?.length > 0) {
+      const existingData = JSON.parse(localStorage.getItem('data')) || [];
+      console.log(existingData.find((each) => each.email))
+      existingData[4] = existingData.find((each) => each.email)
+      localStorage.setItem('data', JSON.stringify([...existingData,existingData[4] ]));
+
+    }else{
     if (validateForm()) {
       console.log('Form data submitted:', formData);
       // Store data in localStorage
       const existingData = JSON.parse(localStorage.getItem('data')) || [];
       localStorage.setItem('data', JSON.stringify([...existingData, formData]));
+      handleSubmitForm()
       // Clear form
       setFormData({
+        sn:"",
         name: '',
         email: '',
         phone: '',
@@ -99,14 +101,13 @@ const Form = ({onSubmit}) => {
         },
         profilePicture: null,
       });
-    }
+    }}
   };
 
   return (
     <div className='main'>
       <h1>Form</h1>
       <form onSubmit={handleSubmit} className='form'>
-
         <div className='name'>
           <label>Name:</label>
           <input type="text" name="name" value={formData.name} onChange={handleChange} />
