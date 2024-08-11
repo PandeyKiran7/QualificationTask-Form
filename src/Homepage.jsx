@@ -67,7 +67,7 @@ const Homepage = () => {
         isEdit={true}
       />
       </div>
-      <Form countries={countries} handleSubmitForm={handleSubmitForm} isEdit={false}/>
+      <Form countries={countries} handleSubmitForm={handleSubmitForm} isEdit={false} />
       <Table data={data} onEdit={handleEdit} onDelete={deleteData} />
     </div>
     )

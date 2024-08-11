@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
-const Form = ({handleSubmitForm,data,countries}) => {
+const Form = ({ handleSubmitForm, data, countries }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,14 +16,10 @@ const Form = ({handleSubmitForm,data,countries}) => {
   });
 
   const [errors, setErrors] = useState({});
-  // const [countries, setCountries] = useState([]);
 
-
-  // For Country Fetch()
   useEffect(() => {
-    
-    if(data){
-      setFormData(data)
+    if (data) {
+      setFormData(data);
     }
   }, [data]);
 
@@ -73,22 +68,15 @@ const Form = ({handleSubmitForm,data,countries}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (data?.length > 0) {
-      const existingData = JSON.parse(localStorage.getItem('data')) || [];
-      console.log(existingData.find((each) => each.email))
-      existingData[4] = existingData.find((each) => each.email)
-      localStorage.setItem('data', JSON.stringify([...existingData,existingData[4] ]));
-
-    }else{
     if (validateForm()) {
       console.log('Form data submitted:', formData);
       // Store data in localStorage
       const existingData = JSON.parse(localStorage.getItem('data')) || [];
       localStorage.setItem('data', JSON.stringify([...existingData, formData]));
-      handleSubmitForm()
+      if (handleSubmitForm) handleSubmitForm(); // Call parent function
+      
       // Clear form
       setFormData({
-        sn:"",
         name: '',
         email: '',
         phone: '',
@@ -101,7 +89,7 @@ const Form = ({handleSubmitForm,data,countries}) => {
         },
         profilePicture: null,
       });
-    }}
+    }
   };
 
   return (
@@ -147,20 +135,24 @@ const Form = ({handleSubmitForm,data,countries}) => {
             <option value="">Select Province</option>
             <option value="1">Province 1</option>
             <option value="2">Province 2</option>
-            <option value="3">Province 3</option>
-            <option value="4">Province 4</option>
-            <option value="5">Province 5</option>
-            <option value="6">Province 6</option>
-            <option value="7">Province 7</option>
+            <option value="3">Bagmati Province</option>
+            <option value="4">Gandaki Province</option>
+            <option value="5">Lumbini Province</option>
+            <option value="6">Karnali Province</option>
+            <option value="7">Sudurpashchim Province</option>
           </select>
         </div>
 
         <div className='address'>
           <label>Country:</label>
           <select name="country" value={formData.address.country} onChange={handleAddressChange}>
-            {countries.map((country, index) => (
-              <option key={index} value={country}>{country}</option>
-            ))}
+            {countries && countries.length > 0 ? (
+              countries.map((country, index) => (
+                <option key={index} value={country}>{country}</option>
+              ))
+            ) : (
+              <option value="Nepal">Nepal</option> // Default option in case countries is undefined or empty
+            )}
           </select>
         </div>
 
