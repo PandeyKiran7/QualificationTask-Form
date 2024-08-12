@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Table = ({ data, onEdit, onDelete }) => {
-  console.log(data,'data')
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2;
+  const itemsPerPage = 5;
 
   const totalPages = Math.ceil(data?.length / itemsPerPage);
 
@@ -38,7 +37,7 @@ const Table = ({ data, onEdit, onDelete }) => {
           ) : (
             tableData?.map((item, index) => (
               <tr key={index}>
-                <td>{index}</td>
+                <td>{item.sn}</td>
                 <td>{item.name}</td>
                 <td>{item.email}</td>
                 <td>{item.phone}</td>
@@ -56,8 +55,8 @@ const Table = ({ data, onEdit, onDelete }) => {
           )}
         </tbody>
       </table>
-      <div style={{display:"flex", padding:"4px"}}>
-      <button 
+      <div style={{ display: "flex", padding: "4px" }}>
+        <button
           onClick={() => setCurrentPage(currentPage - 1)}
           disabled={currentPage === 1}
         >
@@ -66,13 +65,13 @@ const Table = ({ data, onEdit, onDelete }) => {
 
         <span>{` Page ${currentPage} of ${totalPages} `}</span>
 
-        <button 
+        <button
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
           Next
         </button>
-    </div>
+      </div>
     </div>
   );
 };
